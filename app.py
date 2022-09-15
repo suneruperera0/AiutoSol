@@ -3,7 +3,7 @@ from datetime import date,time, datetime
 import sqlite3 as sql
 import os
 # Create Database if it doesnt exist
-if not os.path.isfile('database.db'):
+if os.path.isfile('database.db'):
   conn = sql.connect('database.db')
   conn.execute('CREATE TABLE IF NOT EXISTS Donors (Name TEXT NOT NULL, Amount INTEGER NOT NULL, Email TEXT NOT NULL, [timestamp] TIMESTAMP)')
   conn.execute('CREATE TABLE IF NOT EXISTS Users (Name TEXT NOT NULL, Email TEXT NOT NULL, Password TEXT NOT NULL, Contact INTEGER NOT NULL)')
@@ -16,39 +16,39 @@ app = Flask(__name__,static_url_path='/assets',
 @app.route('/')
 def root():
    session['logged_out']= 1
-   return render_template('index.html')
+   return render_template('index.php')
 
 @app.route('/index.html')
 def index():
-   return render_template('index.html')
+   return render_template('index.php')
 
 @app.route('/header_page.html')
 def header_page():
-   return render_template('header_page.html')
+   return render_template('header_page.php')
 
-@app.route('/menu-bar-charity.html')
+@app.route('/menu-bar-charity.php')
 def menu_bar_charity():
-   return render_template('menu-bar-charity.html')
+   return render_template('menu-bar-charity.php')
 
-@app.route('/footer.html')
+@app.route('/footer.php')
 def footer():
-   return render_template('footer.html')
+   return render_template('footer.php')
 
-@app.route('/sidebar.html')
+@app.route('/sidebar.php')
 def sidebar():
-   return render_template('sidebar.html')   
+   return render_template('sidebar.php')   
 
-@app.route('/contact.html')
+@app.route('/contact.php')
 def contact():
-   return render_template('contact.html')
+   return render_template('contact.php')
 
-@app.route('/our-causes.html')
+@app.route('/our-causes.php')
 def our_causes():
-   return render_template('our-causes.html')
+   return render_template('our-causes.php')
 
-@app.route('/about-us.html')
+@app.route('/about-us.php')
 def about_us():
-   return render_template('about-us.html')
+   return render_template('about-us.php')
 
 
 @app.route('/register', methods=['GET', 'POST'])
